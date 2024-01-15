@@ -52,12 +52,12 @@ export class AuthService {
   restore() {
     const user = localStorage.getItem('user');
     if (!user) {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/']);
       return;
     }
     const userData: AuthData = JSON.parse(user);
     if (this.jwtHelper.isTokenExpired(userData.accessToken)) {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/']);
       return;
     }
     this.authSubj.next(userData);

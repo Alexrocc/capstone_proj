@@ -16,17 +16,15 @@ export class RegisterComponent implements OnInit {
       name: new FormControl('', [Validators.required]),
       surname: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      username: new FormControl('', Validators.required),
+      username: new FormControl('', [Validators.required]),
       password: new FormControl('', [
         Validators.required,
-        Validators.pattern(
-          '^(?=.*d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$'
-        ),
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$'),
       ]),
-      passwordConfirm: new FormControl('', Validators.required),
-      terms: new FormControl(false, termsValidator),
+      confirmPassword: new FormControl('', [Validators.required]),
+      terms: new FormControl(false, [termsValidator]),
     },
-    passwordMatchValidator
+    [passwordMatchValidator]
   );
 
   constructor(private authSrv: AuthService, private router: Router) {}
