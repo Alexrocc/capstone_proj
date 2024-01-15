@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiURL: 'https://659ebef647ae28b0bd369b17.mockapi.io/steam/games',
+  userDataURL: 'http://localhost:4201',
 };
 
 /*
