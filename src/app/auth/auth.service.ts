@@ -19,8 +19,12 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  register(user: Partial<AuthData>) {
-    return this.http.post(`${this.userDataURL}/register`, user).pipe(
+  register(user: any) {
+    const newUser = user;
+    newUser.wishlist = [];
+    newUser.library = [];
+    delete newUser.passwordConfirm;
+    return this.http.post(`${this.userDataURL}/register`, newUser).pipe(
       tap(() => {
         this.router.navigate(['/login']), catchError(this.errors);
       })

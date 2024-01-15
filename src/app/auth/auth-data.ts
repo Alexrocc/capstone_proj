@@ -8,5 +8,6 @@ export interface AuthData {
     username: string;
     wishlist: object[];
     library: object[];
+    terms: boolean;
   };
 }
