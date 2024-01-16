@@ -1,4 +1,16 @@
 {
   "users": [
+    {
+      "email": "pippo@pippo.com",
+      "password": "$2a$10$N3gwAtJwXRmFwyzkWK3tZO2fNU6kB2Wtl0O.Uzm6vOn9kOaDElbxW",
+      "name": "Alessio",
+      "surname": "Rocchigiani",
+      "username": "Ulaman",
+      "confirmPassword": "Chettepossino2",
+      "terms": true,
+      "wishlist": [],
+      "library": [],
+      "id": 1
+    }
   ]
 }

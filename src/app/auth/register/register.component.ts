@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { passwordMatchValidator } from 'src/app/validators/passwordMatch.validator';
 import { termsValidator } from 'src/app/validators/terms.validator';
@@ -27,7 +26,7 @@ export class RegisterComponent implements OnInit {
     [passwordMatchValidator]
   );
 
-  constructor(private authSrv: AuthService, private router: Router) {}
+  constructor(private authSrv: AuthService) {}
 
   ngOnInit(): void {}
 

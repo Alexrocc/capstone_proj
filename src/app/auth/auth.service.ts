@@ -23,7 +23,7 @@ export class AuthService {
     const newUser = user;
     newUser.wishlist = [];
     newUser.library = [];
-    delete newUser.passwordConfirm;
+    delete newUser.confirmPassword;
     return this.http.post(`${this.userDataURL}/register`, newUser).pipe(
       tap(() => {
         this.router.navigate(['/login']), catchError(this.errors);
@@ -36,7 +36,6 @@ export class AuthService {
     localStorage.removeItem('user');
     this.router.navigate(['/']);
   }
-
   login(data: { email: string; password: string }) {
     return this.http.post<AuthData>(`${this.userDataURL}/login`, data).pipe(
       tap((loggedUser) => {
