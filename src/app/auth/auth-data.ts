@@ -1,7 +1,7 @@
 export interface AuthData {
   accessToken: string;
   user: {
-    id: number;
+    id?: number;
     email: string;
     name: string;
     surname: string;
@@ -10,4 +10,17 @@ export interface AuthData {
     library: object[];
     terms: boolean;
   };
+}
+
+export interface User {
+  id?: number;
+  email: string | null;
+  name: string | null;
+  surname: string | null;
+  username: string | null;
+  password: string | null;
+  passwordConfirm: string | null;
+  wishlist?: object[];
+  library?: object[];
+  terms: boolean | null;
 }

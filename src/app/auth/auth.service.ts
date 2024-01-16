@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthData } from './auth-data';
+import { AuthData, User } from './auth-data';
 import { environment } from 'src/environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BehaviorSubject, tap, throwError, catchError } from 'rxjs';
@@ -19,7 +19,7 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  register(user: any) {
+  register(user: Partial<User>) {
     const newUser = user;
     newUser.wishlist = [];
     newUser.library = [];
