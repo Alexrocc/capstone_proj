@@ -1,1 +1,76 @@
-<p>details works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>{{ game.name }}</h1>
+      <div class="video-area">
+        <div class="video-player"></div>
+        <div class="header-area">
+          <div class="img-container">
+            <img src="{{ game.image }}" alt="{{ game.name }}" />
+          </div>
+          <div class="score">
+            <h4>{{ game.release_date }}</h4>
+            <div *ngSwitch="game.rating">
+              <p *ngSwitchCase="game.rating >= 95" class="positive-rev">
+                Overwhelmingly Positive <span>({{ game.reviews }})</span>
+              </p>
+              <p
+                *ngSwitchCase="game.rating >= 80 && game.rating <= 94"
+                class="positive-rev"
+              >
+                Very Positive <span>({{ game.reviews }})</span>
+              </p>
+              <p
+                *ngSwitchCase="game.rating >= 70 && game.rating <= 79"
+                class="positive-rev"
+              >
+                Mostly Positive <span>({{ game.reviews }})</span>
+              </p>
+              <p
+                *ngSwitchCase="game.rating >= 40 && game.rating <= 69"
+                class="mixed-rev"
+              >
+                Mixed <span>({{ game.reviews }})</span>
+              </p>
+              <p
+                *ngSwitchCase="game.rating >= 20 && game.rating <= 39"
+                class="negative-rev"
+              >
+                Mostly Negative <span>({{ game.reviews }})</span>
+              </p>
+              <p
+                *ngSwitchCase="game.rating >= 0 && game.rating <= 19"
+                class="negative-rev"
+              >
+                Overwhelmingly Negative <span>({{ game.reviews }})</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="shopping-area">
+        <div *ngIf="game.price !== null; else FTP">
+          Buy {{ game.name }}
+          <div>
+            <div>{{ game.price }}</div>
+            <button type="button" class="btn">Buy game</button>
+            <button type="button" class="btn">Add to Wishlist</button>
+          </div>
+        </div>
+      </div>
+      <div class="description-area">
+        <h6>{{ game.description }}</h6>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #FTP
+  ><div>
+    Play {{ game.name }}
+    <div>
+      <div>Free</div>
+      <button type="button" class="btn">Add to Library</button>
+    </div>
+  </div></ng-template
+>

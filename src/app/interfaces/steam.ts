@@ -8,5 +8,5 @@ export interface Steam {
   reviews: number;
   image: string;
   video_src: string;
-  id: number;
+  id: string;
 }

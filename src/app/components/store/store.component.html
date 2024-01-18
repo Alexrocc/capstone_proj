@@ -1,7 +1,11 @@
 <div class="container text-center">
   <div class="row">
     <div class="col">
-      <a class="game-tab" *ngFor="let game of store">
+      <a
+        class="game-tab"
+        *ngFor="let game of store"
+        [routerLink]="['/details', game.id]"
+      >
         <div class="tab-img">
           <img src="{{ game.image }}" alt="{{ game.name }}" />
         </div>

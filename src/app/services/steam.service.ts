@@ -17,6 +17,10 @@ export class SteamService {
     return this.http.get<Steam[]>(`${this.apiURL}`);
   }
 
+  getSingleGame(gameId: number) {
+    return this.http.get<Steam>(`${this.apiURL}/${gameId}`);
+  }
+
   getUser(userId: number) {
     return this.http.get<User>(`${this.userDb}/users/${userId}`);
   }
