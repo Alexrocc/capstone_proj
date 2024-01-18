@@ -18,7 +18,7 @@ export interface User {
   name: string | null;
   surname: string | null;
   username: string | null;
-  password: string | null;
+  password?: string | null;
   confirmPassword?: string | null;
   wishlist?: object[];
   library?: object[];

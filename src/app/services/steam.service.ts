@@ -1,9 +1,23 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Steam } from '../interfaces/steam';
+import { User } from '../auth/auth-data';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SteamService {
+  apiURL = environment.apiURL;
+  userDb = environment.userDataURL;
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
+
+  getStore() {
+    return this.http.get<Steam[]>(`${this.apiURL}`);
+  }
+
+  getUser(userId: number) {
+    return this.http.get<User>(`${this.userDb}/users/${userId}`);
+  }
 }
