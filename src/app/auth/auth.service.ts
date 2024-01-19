@@ -34,8 +34,9 @@ export class AuthService {
   logout() {
     this.authSubj.next(null);
     localStorage.removeItem('user');
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
+
   login(data: { email: string; password: string }) {
     return this.http.post<AuthData>(`${this.userDataURL}/login`, data).pipe(
       tap((loggedUser) => {

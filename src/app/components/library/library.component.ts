@@ -10,7 +10,7 @@ import { SteamService } from 'src/app/services/steam.service';
 export class LibraryComponent implements OnInit {
   userId!: number;
   currentUser!: User;
-  currentUserLibrary!: object[] | undefined;
+  currentUserLibrary: object[] | undefined;
 
   constructor(private steamSrv: SteamService) {
     let user = localStorage.getItem('user');

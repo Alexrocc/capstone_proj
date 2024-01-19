@@ -13,12 +13,12 @@
       </div>
 
       <div class="wishlist">
-        <div *ngFor="let game; in: currentUserWishlist">
+        <div *ngFor="let game of currentUserWishlist">
           <div>
-            <img src="{{ game.image }}" alt="{{ game.name }}" />
+            <img src="{{ game }}" alt="{{ game }}" />
           </div>
           <div>
-            <h5>{{ game.name }}</h5>
+            <h5>{{ game }}</h5>
           </div>
           <button type="button" class="btn">Add to Library</button>
         </div>

@@ -32,7 +32,7 @@ const routes: Route[] = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'details',
+    path: 'details/:id',
     component: DetailsComponent,
   },
   {

@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
     if (user) {
       let parsedUser = JSON.parse(user);
       this.userId = parsedUser.user.id;
+      console.log(this.userId);
     }
   }
 

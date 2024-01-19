@@ -23,11 +23,12 @@ export class StoreComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.steamSrv.getUser(this.userId).subscribe((res) => {
-      this.userWishlist = res.wishlist;
-      this.userLibrary = res.library;
-    });
-
+    if (typeof this.userId === 'number') {
+      this.steamSrv.getUser(this.userId).subscribe((res) => {
+        this.userWishlist = res.wishlist;
+        this.userLibrary = res.library;
+      });
+    }
     this.steamSrv.getStore().subscribe((res) => {
       this.store = res;
     });
