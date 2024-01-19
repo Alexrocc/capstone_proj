@@ -20,7 +20,20 @@ export interface User {
   username: string | null;
   password?: string | null;
   confirmPassword?: string | null;
-  wishlist?: object[];
-  library?: object[];
+  wishlist: Steam[];
+  library: Steam[];
   terms: boolean | null;
+}
+
+export interface Steam {
+  name: string;
+  release_date: string;
+  rating: number;
+  price: number | null;
+  genres: string[];
+  description: string;
+  reviews: number;
+  image: string;
+  video_src: string;
+  id: string;
 }

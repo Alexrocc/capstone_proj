@@ -11,14 +11,18 @@ import { SteamService } from 'src/app/services/steam.service';
 export class ProfileComponent implements OnInit {
   userId!: number;
   currentUser!: User;
-  currentUserWishlist!: object[] | undefined;
+  currentUserWishlist!: Steam[] | null;
 
   constructor(private steamSrv: SteamService) {
     let user = localStorage.getItem('user');
     if (user) {
       let parsedUser = JSON.parse(user);
       this.userId = parsedUser.user.id;
-      console.log(this.userId);
+      if (parsedUser.user.wishlist.length > 0) {
+        this.currentUserWishlist = parsedUser.user.wishlist;
+      } else {
+        this.currentUserWishlist = null;
+      }
     }
   }
 
@@ -26,7 +30,6 @@ export class ProfileComponent implements OnInit {
     this.steamSrv.getUser(this.userId).subscribe((res) => {
       if (res) {
         this.currentUser = res;
-        this.currentUserWishlist = res.wishlist;
       } else {
         throw new Error();
       }

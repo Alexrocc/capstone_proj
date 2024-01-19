@@ -12,13 +12,13 @@
         <h5>{{ currentUser.email }}</h5>
       </div>
 
-      <div class="wishlist">
+      <div *ngIf="currentUserWishlist; else noFavourites" class="wishlist">
         <div *ngFor="let game of currentUserWishlist">
           <div>
-            <img src="{{ game }}" alt="{{ game }}" />
+            <img src="{{ game.image }}" alt="{{ game.name }}" />
           </div>
           <div>
-            <h5>{{ game }}</h5>
+            <h5>{{ game.name }}</h5>
           </div>
           <button type="button" class="btn">Add to Library</button>
         </div>
@@ -26,3 +26,7 @@
     </div>
   </div>
 </div>
+
+<ng-template #noFavourites>
+  <h3>There are currently no games in your wishlist</h3>
+</ng-template>
