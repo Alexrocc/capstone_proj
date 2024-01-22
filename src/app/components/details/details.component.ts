@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, Observable, Subscription, from } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/auth/auth-data';
 import { Steam } from 'src/app/interfaces/steam';
 import { SteamService } from 'src/app/services/steam.service';
@@ -73,11 +73,9 @@ export class DetailsComponent implements OnInit, OnDestroy {
   removeFromWishlist(game: Steam) {
     let gameIndex = this.userWishlist.map((e) => e.id).indexOf(game.id);
     this.userWishlist.splice(gameIndex, 1);
-    console.log(this.userWishlist);
     this.isInWishlist$.next(null);
     this.isInWishlist$.subscribe();
     this.steamSrv.patchUserWishlist(this.userWishlist, this.userId).subscribe();
-    console.log(this.userWishlist);
   }
 
   addToWishlist(game: Steam) {
@@ -91,7 +89,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.userLibrary.push(game);
     this.isInLibrary$.next(true);
     this.isInLibrary$.subscribe();
-    this.steamSrv.patchUserLibrary(this.userLibrary, this.userId);
+    this.steamSrv.patchUserLibrary(this.userLibrary, this.userId).subscribe();
   }
 
   ngOnDestroy(): void {
