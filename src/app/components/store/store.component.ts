@@ -11,8 +11,8 @@ import { SteamService } from 'src/app/services/steam.service';
 export class StoreComponent implements OnInit {
   store!: Steam[];
   userId!: number;
-  userWishlist!: object[] | undefined;
-  userLibrary!: object[] | undefined;
+  userWishlist!: Steam[];
+  userLibrary!: Steam[];
 
   constructor(private router: Router, private steamSrv: SteamService) {
     const user = localStorage.getItem('user');
@@ -34,3 +34,4 @@ export class StoreComponent implements OnInit {
     });
   }
 }
+// creare array di observables e metodo addToWishlist

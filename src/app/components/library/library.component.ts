@@ -14,6 +14,7 @@ export class LibraryComponent implements OnInit, OnDestroy {
   currentUser!: User;
   currentUserLibrary: Observable<Steam>[] = [];
   subscriptions: Subscription[] = [];
+  visualizedLibrary!: Steam[];
 
   constructor(private steamSrv: SteamService) {
     let user = localStorage.getItem('user');
@@ -34,13 +35,21 @@ export class LibraryComponent implements OnInit, OnDestroy {
           this.currentUserLibrary.push(newObservable);
           this.subscriptions.push(sub);
         });
+        this.visualizedLibrary = res.library;
       } else {
         throw new Error();
       }
     });
   }
 
-  removeFromLibrary() {}
+  removeFromLibrary(index: number) {
+    this.visualizedLibrary.slice(index, 1);
+    this.subscriptions[index].unsubscribe();
+    this.currentUserLibrary.slice(index, 1);
+    this.steamSrv
+      .patchUserLibrary(this.visualizedLibrary, this.userId)
+      .subscribe();
+  }
 
   ngOnDestroy(): void {
     // patch allo user

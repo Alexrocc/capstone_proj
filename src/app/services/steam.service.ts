@@ -24,4 +24,15 @@ export class SteamService {
   getUser(userId: number) {
     return this.http.get<User>(`${this.userDb}/users/${userId}`);
   }
+
+  patchUserLibrary(library: Steam[], userId: number) {
+    return this.http.patch(`${this.userDb}/users/${userId}`, {
+      library: library,
+    });
+  }
+  patchUserWishlist(wishlist: Steam[], userId: number) {
+    return this.http.patch(`${this.userDb}/users/${userId}`, {
+      wishlist: wishlist,
+    });
+  }
 }

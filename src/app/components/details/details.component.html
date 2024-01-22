@@ -10,7 +10,7 @@
           </div>
           <div class="score">
             <h4>{{ game.release_date }}</h4>
-            <div *ngSwitch="game.rating">
+            <div *ngSwitch="game">
               <p *ngSwitchCase="game.rating >= 95" class="positive-rev">
                 Overwhelmingly Positive <span>({{ game.reviews }})</span>
               </p>
@@ -53,8 +53,18 @@
           Buy {{ game.name }}
           <div>
             <div>{{ game.price }}</div>
-            <button type="button" class="btn">Buy game</button>
-            <button type="button" class="btn">Add to Wishlist</button>
+            <div *ngIf="isInLibrary$ | async as boolean; else notInLibrary">
+              <button type="button" class="btn" disabled>In Library</button>
+            </div>
+            <div *ngIf="isInWishlist$ | async as boolean; else notInWishlist">
+              <button
+                type="button"
+                class="btn"
+                (click)="removeFromWishlist(game)"
+              >
+                Remove from Wishlist
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -68,9 +78,25 @@
 <ng-template #FTP
   ><div>
     Play {{ game.name }}
-    <div>
-      <div>Free</div>
-      <button type="button" class="btn">Add to Library</button>
+    <div>Free</div>
+    <div *ngIf="isInLibrary$">
+      <button type="button" class="btn" disabled>In Library</button>
     </div>
   </div></ng-template
 >
+
+<ng-template #notInWishlist>
+  <div>
+    <button type="button" class="btn" (click)="addToWishlist(game)">
+      Add to Wishlist
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #notInLibrary>
+  <div>
+    <button type="button" class="btn" (click)="addToLibrary(game)">
+      Buy Game
+    </button>
+  </div>
+</ng-template>
