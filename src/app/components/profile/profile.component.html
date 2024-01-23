@@ -1,26 +1,38 @@
 <div class="container">
   <div class="row">
-    <div class="col">
+    <div class="col" *ngIf="currentUser$ | async as user">
       <div>
         <img
           src="https://avatars.akamai.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg"
         />
       </div>
-      <h1>{{ currentUser.username }}</h1>
+      <h1>{{ user.username }}</h1>
       <div>
-        <h5>{{ currentUser.name }} {{ currentUser.surname }}</h5>
-        <h5>{{ currentUser.email }}</h5>
+        <h5>{{ user.name }} {{ user.surname }}</h5>
+        <h5>{{ user.email }}</h5>
       </div>
 
-      <div *ngIf="currentUserWishlist; else noFavourites" class="wishlist">
-        <div *ngFor="let game of currentUserWishlist">
+      <div
+        *ngIf="currentUserWishlist$ | async as wishlist; else noFavourites"
+        class="wishlist"
+      >
+        <div *ngFor="let game of wishlist">
           <div>
             <img src="{{ game.image }}" alt="{{ game.name }}" />
           </div>
           <div>
             <h5>{{ game.name }}</h5>
           </div>
-          <button type="button" class="btn">Add to Library</button>
+          <button type="button" class="btn" (click)="removeFromWishlist(game)">
+            Remove from wishlist
+          </button>
+          <button
+            type="button"
+            class="btn"
+            [routerLink]="['/details', game.id]"
+          >
+            Details
+          </button>
         </div>
       </div>
     </div>
@@ -28,5 +40,5 @@
 </div>
 
 <ng-template #noFavourites>
-  <h3>There are currently no games in your wishlist</h3>
+  <h3>There are currently no games in your wishlist.</h3>
 </ng-template>

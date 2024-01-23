@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable, from, Subscription } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/auth/auth-data';
 import { Steam } from 'src/app/interfaces/steam';
 import { SteamService } from 'src/app/services/steam.service';
@@ -12,9 +12,8 @@ import { SteamService } from 'src/app/services/steam.service';
 export class LibraryComponent implements OnInit, OnDestroy {
   userId!: number;
   currentUser!: User;
-  currentUserLibrary: Observable<Steam>[] = [];
-  subscriptions: Subscription[] = [];
-  visualizedLibrary!: Steam[];
+  currentUserLibrary!: Steam[];
+  library$ = new BehaviorSubject<Steam[] | null>(null);
 
   constructor(private steamSrv: SteamService) {
     let user = localStorage.getItem('user');
@@ -26,35 +25,23 @@ export class LibraryComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.steamSrv.getUser(this.userId).subscribe((res) => {
-      if (res) {
-        this.currentUser = res;
-
-        this.currentUser.library.forEach((item) => {
-          let newObservable = from([item]);
-          let sub = newObservable.subscribe();
-          this.currentUserLibrary.push(newObservable);
-          this.subscriptions.push(sub);
-        });
-        this.visualizedLibrary = res.library;
-      } else {
-        throw new Error();
-      }
+      this.currentUser = res;
+      this.currentUserLibrary = res.library;
+      this.library$.next(this.currentUserLibrary);
     });
   }
 
-  removeFromLibrary(index: number) {
-    this.visualizedLibrary.slice(index, 1);
-    this.subscriptions[index].unsubscribe();
-    this.currentUserLibrary.slice(index, 1);
+  removeFromLibrary(game: Steam) {
+    let gameIndex = this.currentUserLibrary.map((e) => e.id).indexOf(game.id);
+    this.currentUserLibrary.splice(gameIndex, 1);
+    this.library$.next(this.currentUserLibrary);
+    this.library$.subscribe();
     this.steamSrv
-      .patchUserLibrary(this.visualizedLibrary, this.userId)
+      .patchUserLibrary(this.currentUserLibrary, this.userId)
       .subscribe();
   }
 
   ngOnDestroy(): void {
-    // patch allo user
-    this.subscriptions.forEach((sub) => {
-      sub.unsubscribe();
-    });
+    this.library$.unsubscribe();
   }
 }

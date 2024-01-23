@@ -53,9 +53,6 @@ export class DetailsComponent implements OnInit, OnDestroy {
     if (check) {
       this.isInWishlist$.next(true);
       this.isInWishlist$.subscribe();
-    } else {
-      this.isInWishlist$.next(null);
-      this.isInWishlist$.subscribe();
     }
   }
 
@@ -63,9 +60,6 @@ export class DetailsComponent implements OnInit, OnDestroy {
     let check = this.userLibrary.some((obj) => obj.name === this.game.name);
     if (check) {
       this.isInLibrary$.next(true);
-      this.isInLibrary$.subscribe();
-    } else {
-      this.isInLibrary$.next(null);
       this.isInLibrary$.subscribe();
     }
   }
