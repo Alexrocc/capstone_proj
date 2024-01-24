@@ -44,8 +44,12 @@ const routes: Route[] = [
     component: RegisterComponent,
   },
   {
-    path: '**',
+    path: 'notfound',
     component: NotfoundComponent,
+  },
+  {
+    path: '**',
+    redirectTo: 'notfound',
   },
 ];
 

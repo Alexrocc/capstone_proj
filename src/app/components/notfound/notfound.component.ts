@@ -12,6 +12,6 @@ export class NotfoundComponent implements OnInit {
   ngOnInit(): void {}
 
   redirect() {
-    // this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/');
   }
 }

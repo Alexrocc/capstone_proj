@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { User } from 'src/app/auth/auth-data';
 import { Steam } from 'src/app/interfaces/steam';
@@ -21,6 +21,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   currentUser$!: Observable<User>;
 
   constructor(
+    private router: Router,
     private actRoute: ActivatedRoute,
     private steamSrv: SteamService
   ) {
@@ -34,7 +35,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.actRoute.paramMap.subscribe((params) => {
       const gameId = Number(params.get('id'));
-      if (!isNaN(gameId)) {
+      if (!isNaN(gameId) && gameId <= 40) {
         this.steamSrv.getSingleGame(gameId).subscribe((res) => {
           this.game = res;
           this.game$ = of(res);
@@ -46,6 +47,8 @@ export class DetailsComponent implements OnInit, OnDestroy {
             this.checkWishlist();
           });
         });
+      } else if (gameId > 40) {
+        this.router.navigate(['notfound']);
       }
     });
   }
