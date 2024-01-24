@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { User } from 'src/app/auth/auth-data';
 import { Steam } from 'src/app/interfaces/steam';
 import { SteamService } from 'src/app/services/steam.service';
@@ -12,12 +12,13 @@ import { SteamService } from 'src/app/services/steam.service';
 })
 export class DetailsComponent implements OnInit, OnDestroy {
   game!: Steam;
+  game$!: Observable<Steam>;
   isInWishlist$ = new BehaviorSubject<true | null>(null);
   userWishlist: Steam[] = [];
   isInLibrary$ = new BehaviorSubject<true | null>(null);
   userLibrary: Steam[] = [];
   userId!: number;
-  currentUser!: User;
+  currentUser$!: Observable<User>;
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -36,8 +37,9 @@ export class DetailsComponent implements OnInit, OnDestroy {
       if (!isNaN(gameId)) {
         this.steamSrv.getSingleGame(gameId).subscribe((res) => {
           this.game = res;
+          this.game$ = of(res);
           this.steamSrv.getUser(this.userId).subscribe((res) => {
-            this.currentUser = res;
+            this.currentUser$ = of(res);
             this.userWishlist = res.wishlist;
             this.userLibrary = res.library;
             this.checkLibrary();

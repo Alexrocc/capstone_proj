@@ -59,6 +59,7 @@ const routes: Route[] = [
     DetailsComponent,
     LoginComponent,
     RegisterComponent,
+    NotfoundComponent,
   ],
   imports: [
     BrowserModule,

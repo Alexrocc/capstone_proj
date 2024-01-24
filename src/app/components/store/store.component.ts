@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Steam } from 'src/app/interfaces/steam';
 import { Router } from '@angular/router';
 import { SteamService } from 'src/app/services/steam.service';
+import { Observable, from } from 'rxjs';
 
 @Component({
   selector: 'app-store',
@@ -9,10 +10,11 @@ import { SteamService } from 'src/app/services/steam.service';
   styleUrls: ['./store.component.scss'],
 })
 export class StoreComponent implements OnInit {
-  store!: Steam[];
+  store$!: Observable<Steam[] | null>;
   userId!: number;
   userWishlist!: Steam[];
   userLibrary!: Steam[];
+  resError: boolean = false;
 
   constructor(private router: Router, private steamSrv: SteamService) {
     const user = localStorage.getItem('user');
@@ -30,8 +32,13 @@ export class StoreComponent implements OnInit {
       });
     }
     this.steamSrv.getStore().subscribe((res) => {
-      this.store = res;
+      if (res) {
+        this.store$ = from([res]);
+        this.resError = false;
+      } else {
+        this.resError = true;
+        throw new Error();
+      }
     });
   }
 }
-// creare array di observables e metodo addToWishlist

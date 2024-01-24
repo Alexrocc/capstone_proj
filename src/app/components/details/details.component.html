@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col">
+    <div class="col" *ngIf="game$ | async as game">
       <h1>{{ game.name }}</h1>
       <div class="video-area">
         <div class="video-player"></div>
@@ -48,7 +48,10 @@
           </div>
         </div>
       </div>
-      <div class="shopping-area">
+      <div
+        class="shopping-area"
+        *ngIf="currentUser$ | async as user; else noUser"
+      >
         <div *ngIf="game.price !== null; else FTP">
           Buy {{ game.name }}
           <div>
@@ -99,4 +102,10 @@
       Buy Game
     </button>
   </div>
+</ng-template>
+
+<ng-template #noUser>
+  <div *ngIf="game.price; else free">{{ game.price }}</div>
+  <h5>Please log in to purchase this product.</h5>
+  <ng-template #free>Free to play</ng-template>
 </ng-template>
