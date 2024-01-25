@@ -7,3 +7,16 @@
 .negative-rev{
     color: #A34C25;
 }
+
+
+.video-area{
+    
+    .video-player{
+        height: 330px;
+        width: 600px;
+        video{
+            height: 330px;
+            width: 600px;
+        }
+    }
+}

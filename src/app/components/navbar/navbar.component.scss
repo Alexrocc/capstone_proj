@@ -1,0 +1,16 @@
+nav{
+    background-color: #171d25;
+    font-family: "Noto Sans", Helvetica, sans-serif;
+  
+    text-transform: uppercase;
+    .nav-link{
+        color: #dcdedf; 
+        font-weight: 600;
+    }
+    .navbar-brand{
+        img{
+            height: 45px;
+            width: 175px;
+        }
+    }
+}

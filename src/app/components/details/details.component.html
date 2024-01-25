@@ -1,79 +1,81 @@
 <div class="container">
-  <div class="row">
-    <div class="col" *ngIf="game$ | async as game">
-      <h1>{{ game.name }}</h1>
-      <div class="video-area">
-        <div class="video-player"></div>
-        <div class="header-area">
-          <div class="img-container">
-            <img src="{{ game.image }}" alt="{{ game.name }}" />
+  <div class="row" *ngIf="game$ | async as game">
+    <div class="video-area col-8">
+      <h1 class="mt-3">{{ game.name }}</h1>
+      <div class="video-player">
+        <video
+          src="{{ game.video_src }}"
+          poster="{{ game.image }}"
+          preload="none"
+          playsInline="true"
+          controls
+        ></video>
+      </div>
+    </div>
+    <div class="header-area col-4">
+      <div class="img-container">
+        <img src="{{ game.image }}" alt="{{ game.name }}" />
+      </div>
+      <div class="score">
+        <h4>{{ game.release_date }}</h4>
+        <div>
+          <p *ngIf="game.rating >= 95" class="positive-rev">
+            Overwhelmingly Positive <span>({{ game.reviews }})</span>
+          </p>
+          <p
+            *ngIf="game.rating >= 80 && game.rating <= 94"
+            class="positive-rev"
+          >
+            Very Positive <span>({{ game.reviews }})</span>
+          </p>
+          <p
+            *ngIf="game.rating >= 70 && game.rating <= 79"
+            class="positive-rev"
+          >
+            Mostly Positive <span>({{ game.reviews }})</span>
+          </p>
+          <p *ngIf="game.rating >= 40 && game.rating <= 69" class="mixed-rev">
+            Mixed <span>({{ game.reviews }})</span>
+          </p>
+          <p
+            *ngIf="game.rating >= 20 && game.rating <= 39"
+            class="negative-rev"
+          >
+            Mostly Negative <span>({{ game.reviews }})</span>
+          </p>
+          <p *ngIf="game.rating >= 0 && game.rating <= 19" class="negative-rev">
+            Overwhelmingly Negative <span>({{ game.reviews }})</span>
+          </p>
+          <p *ngIf="!game.rating">This game does not have enough reviews yet</p>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="shopping-area"
+      *ngIf="currentUser$ | async as user; else noUser"
+    >
+      <div *ngIf="game.price !== null; else FTP">
+        Buy {{ game.name }}
+        <div>
+          <div>{{ game.price }}</div>
+          <div *ngIf="isInLibrary$ | async as boolean; else notInLibrary">
+            <button type="button" class="btn" disabled>In Library</button>
           </div>
-          <div class="score">
-            <h4>{{ game.release_date }}</h4>
-            <div *ngSwitch="game">
-              <p *ngSwitchCase="game.rating >= 95" class="positive-rev">
-                Overwhelmingly Positive <span>({{ game.reviews }})</span>
-              </p>
-              <p
-                *ngSwitchCase="game.rating >= 80 && game.rating <= 94"
-                class="positive-rev"
-              >
-                Very Positive <span>({{ game.reviews }})</span>
-              </p>
-              <p
-                *ngSwitchCase="game.rating >= 70 && game.rating <= 79"
-                class="positive-rev"
-              >
-                Mostly Positive <span>({{ game.reviews }})</span>
-              </p>
-              <p
-                *ngSwitchCase="game.rating >= 40 && game.rating <= 69"
-                class="mixed-rev"
-              >
-                Mixed <span>({{ game.reviews }})</span>
-              </p>
-              <p
-                *ngSwitchCase="game.rating >= 20 && game.rating <= 39"
-                class="negative-rev"
-              >
-                Mostly Negative <span>({{ game.reviews }})</span>
-              </p>
-              <p
-                *ngSwitchCase="game.rating >= 0 && game.rating <= 19"
-                class="negative-rev"
-              >
-                Overwhelmingly Negative <span>({{ game.reviews }})</span>
-              </p>
-            </div>
+          <div *ngIf="isInWishlist$ | async as boolean; else notInWishlist">
+            <button
+              type="button"
+              class="btn"
+              (click)="removeFromWishlist(game)"
+            >
+              Remove from Wishlist
+            </button>
           </div>
         </div>
       </div>
-      <div
-        class="shopping-area"
-        *ngIf="currentUser$ | async as user; else noUser"
-      >
-        <div *ngIf="game.price !== null; else FTP">
-          Buy {{ game.name }}
-          <div>
-            <div>{{ game.price }}</div>
-            <div *ngIf="isInLibrary$ | async as boolean; else notInLibrary">
-              <button type="button" class="btn" disabled>In Library</button>
-            </div>
-            <div *ngIf="isInWishlist$ | async as boolean; else notInWishlist">
-              <button
-                type="button"
-                class="btn"
-                (click)="removeFromWishlist(game)"
-              >
-                Remove from Wishlist
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="description-area">
-        <h6>{{ game.description }}</h6>
-      </div>
+    </div>
+    <div class="description-area">
+      <h6>{{ game.description }}</h6>
     </div>
   </div>
 </div>
