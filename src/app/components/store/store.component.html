@@ -1,19 +1,61 @@
-<div class="container text-center">
+<div class="container-fluid container-xl text-center">
   <div class="row">
-    <div class="col" *ngIf="store$ | async as store">
+    <div class="col-12 pb-4" *ngIf="store$ | async as store">
+      <div id="store-top">
+        <h1>STORE</h1>
+        <h2 class="mt-3 mb-4">Top Sellers:</h2>
+      </div>
       <a
-        class="game-tab"
+        class="game-tab d-flex mt-3 row"
         *ngFor="let game of store"
         [routerLink]="['/details', game.id]"
       >
-        <div class="tab-img">
+        <div class="tab-img col-2 p-0">
           <img src="{{ game.image }}" alt="{{ game.name }}" />
         </div>
-        <div class="tab-content">
-          <h4>{{ game.name }}</h4>
-          <div>
-            <span *ngFor="let genre of game.genres">{{ genre }}</span>
-          </div>
+        <div
+          class="tab-content align-self-center flex-grow-1 text-truncate col-4"
+        >
+          <p>{{ game.name }}</p>
+        </div>
+        <div class="d-none d-md-block align-self-center me-5 date col-2">
+          <p>{{ game.release_date }}</p>
+        </div>
+        <div
+          class="rating-thumb me-1 me-md-2 me-lg-5 align-self-center col-2 p-0"
+          *ngIf="game.rating >= 70"
+        >
+          <img
+            src="https://store.akamai.steamstatic.com/public/images/v6/user_reviews_positive.png"
+            alt=""
+            class="img-fluid"
+          />
+        </div>
+        <div
+          class="rating-thumb me-1 me-md-2 me-lg-5 align-self-center col-2 p-0"
+          *ngIf="game.rating >= 40 && game.rating <= 69"
+        >
+          <img
+            src="https://store.akamai.steamstatic.com/public/images/v6/user_reviews_mixed.png"
+            alt=""
+            class="img-fluid"
+          />
+        </div>
+        <div
+          class="rating-thumb me-1 me-md-2 me-lg-5 align-self-center col-2 p-0"
+          *ngIf="game.rating <= 39"
+        >
+          <img
+            src="https://store.akamai.steamstatic.com/public/images/v6/user_reviews_negative.png"
+            alt=""
+            class="img-fluid"
+          />
+        </div>
+        <div
+          class="tab-content align-self-end p-2 col-2"
+          *ngIf="game.price !== null; else FTP"
+        >
+          <p class="text-end">{{ game.price }}€</p>
         </div>
       </a>
     </div>
@@ -24,3 +66,9 @@
   <h1>It seems something went wrong..</h1>
   <h3>Please try again later!</h3>
 </div>
+
+<ng-template #FTP
+  ><div class="tab-content align-self-end text-end p-2 col-2">
+    <p class="text-end">Free</p>
+  </div></ng-template
+>

@@ -1,10 +1,47 @@
+
+p{
+    margin: 0;
+}
+
+h1,h2{
+   color : #ffffff;
+    text-transform: uppercase;
+    text-align: start;
+}
+
+.container-fluid, .container-xl{
+    padding-top: 71px;
+}
+
+#store-top{
+    background-image: url(https://store.akamai.steamstatic.com/public/images//v6/search/cluster_bg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 50px;
+    padding-top: 29px;
+}
+
+
 .game-tab {
+    font-weight: 400;
+    font-size: 15px;
     display: block;
     height: 80px;
     margin-bottom: 8px;
+    text-decoration: none;
+    background-color: #16202D;
+    .tab-content{
+        color: #c7d5e0;
+        p{
+            text-align: start;
+            padding-left: 10px;
+        }
+    }
     .tab-img{
         height: 100%;
-        width: 100px;
+        width: 120px;
+        flex-shrink: 0;
         img{
             width: 100%;
             height: 100%;
@@ -12,3 +49,35 @@
         }
     }
 }
+
+.date{
+    color: #4c6c8c;
+}
+
+.rating-thumb{
+    width: 15px;
+    height: 15px;
+    img{
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .rating-thumb{
+        width: 25px;
+        height: 25px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .game-tab{
+        font-size: 18px;
+        .tab-img{
+            width: 160px;
+        }
+        
+    }
+}
+
+

@@ -3,6 +3,9 @@ nav{
     font-family: "Noto Sans", Helvetica, sans-serif;
   
     text-transform: uppercase;
+    .nav-item{
+        padding-inline: 0.6rem;
+    }
     .nav-link{
         color: #dcdedf; 
         font-weight: 600;
@@ -14,3 +17,18 @@ nav{
         }
     }
 }
+
+
+.navbar-toggler{
+    width: 35px;
+    height: 31px;
+    padding: 0;
+    img{
+        width: 100%;
+    }
+}
+.navbar-nav{
+    flex-direction: row;
+    justify-content: center;
+}
+
