@@ -1,15 +1,23 @@
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <div id="library" *ngIf="library$ | async as library">
-        <a *ngFor="let game of library">
-          <div><img src="{{ game.image }}" alt="{{ game.name }}" /></div>
-          <div>
-            <button type="button" class="btn" (click)="removeFromLibrary(game)">
-              Refund
-            </button>
-          </div>
-        </a>
+  <div class="row justify-content-center">
+    <div
+      class="col-12 col-md-10 col-lg-8 mt-5"
+      id="library"
+      *ngIf="library$ | async as library"
+    >
+      <h2 class="mb-5">Your Games:</h2>
+      <div *ngFor="let game of library" class="library-item p-2">
+        <div id="img-div">
+          <img src="{{ game.image }}" alt="{{ game.name }}" />
+        </div>
+        <div class="d-inline-block ms-2 ms-md-3 me-lg-5">
+          {{ game.name }}
+        </div>
+        <div class="d-block d-md-inline-block ms-2 ms-lg-5 mt-2 pb-2 refund">
+          <button type="button" class="btn" (click)="removeFromLibrary(game)">
+            Refund
+          </button>
+        </div>
       </div>
     </div>
   </div>

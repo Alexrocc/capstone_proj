@@ -11,7 +11,7 @@
         [routerLink]="['/details', game.id]"
       >
         <div class="tab-img col-2 p-0">
-          <img src="{{ game.image }}" alt="{{ game.name }}" />
+          <img src="{{ game.image }}" alt="{{ game.name }}" loading="lazy" />
         </div>
         <div
           class="tab-content align-self-center flex-grow-1 text-truncate col-4"

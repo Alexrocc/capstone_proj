@@ -21,7 +21,6 @@ export class ProfileComponent implements OnInit {
       let parsedUser = JSON.parse(user);
       this.userId = parsedUser.user.id;
       if (parsedUser.user.wishlist.length > 0) {
-        this.currentUserWishlist$.next(parsedUser.user.wishlist);
         this.wishlist = parsedUser.user.wishlist;
       }
     }
@@ -31,6 +30,7 @@ export class ProfileComponent implements OnInit {
     this.steamSrv.getUser(this.userId).subscribe((res) => {
       if (res) {
         this.currentUser$ = of(res);
+        this.currentUserWishlist$.next(res.wishlist);
       } else {
         throw new Error();
       }

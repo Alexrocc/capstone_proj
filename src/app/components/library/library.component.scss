@@ -1,3 +1,35 @@
-a{
-    display: block;
+*{
+    color : #ffffff;
+}
+
+.library-item{
+    background-color: #16202D;
+    position: relative;
+}
+
+#img-div{
+    display: inline-block;
+    width: 180px;
+    height: 85px;
+    img{
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+.refund{
+    position: absolute;
+    right: 9px;
+    top: 22px;
+}
+
+button{
+    background-color: #174661;
+    color: #67c1f5;
+}
+
+@media screen and (min-width: 768px) {
+    #img-div + div{
+        font-size: 18px;
+    }
 }

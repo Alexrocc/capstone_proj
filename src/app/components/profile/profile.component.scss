@@ -1,0 +1,71 @@
+*{
+    color : #ffffff;
+}
+
+.profile-img{
+    width: 120px;
+    height: 120px;
+    display: inline-block;
+    img{
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+#user{
+    vertical-align: middle;
+}
+
+.wishlist-item{
+    background-color: #16202D;
+}
+
+#game-img{
+    flex-shrink: 0;
+    padding-top: 5px;
+    img{
+        width: 100%;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+}
+#title-div{
+    align-self: center;
+    h5{
+        font-size: 14px;
+        font-weight: 400;
+        margin: 0;
+    }
+}
+
+#button-div{
+    align-self: center;
+    button{
+        font-size: 14px;
+    }
+    .details{
+        background-color: #409aca;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .profile-img{
+        width: 160px;
+        height: 160px;
+    }
+    #user{
+        display: inline-block;
+        width: fit-content;
+    }
+    #title-div{
+        h5{
+            font-size: 18px;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+   #game-img{
+    padding: 0;
+   }
+}

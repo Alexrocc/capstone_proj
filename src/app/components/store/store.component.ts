@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Steam } from 'src/app/interfaces/steam';
-import { Router } from '@angular/router';
 import { SteamService } from 'src/app/services/steam.service';
 import { Observable, from } from 'rxjs';
 
@@ -16,7 +15,7 @@ export class StoreComponent implements OnInit {
   userLibrary!: Steam[];
   resError: boolean = false;
 
-  constructor(private router: Router, private steamSrv: SteamService) {
+  constructor(private steamSrv: SteamService) {
     const user = localStorage.getItem('user');
     if (user) {
       let parsedUser = JSON.parse(user);

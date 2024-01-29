@@ -1,38 +1,57 @@
 <div class="container">
-  <div class="row">
-    <div class="col" *ngIf="currentUser$ | async as user">
-      <div>
+  <div class="row justify-content-center">
+    <div
+      class="col-12 col-md-11 col-lg-8 pt-5"
+      *ngIf="currentUser$ | async as user"
+    >
+      <div class="profile-img me-3 mb-3">
         <img
-          src="https://avatars.akamai.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg"
+          src="https://avatars.akamai.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_full.jpg"
         />
       </div>
-      <h1>{{ user.username }}</h1>
-      <div>
+
+      <div id="user">
+        <h1>{{ user.username }}</h1>
         <h5>{{ user.name }} {{ user.surname }}</h5>
         <h5>{{ user.email }}</h5>
       </div>
 
+      <div class="my-5">
+        <h4>Your Wishlist:</h4>
+      </div>
       <div
         *ngIf="currentUserWishlist$ | async as wishlist; else noFavourites"
-        class="wishlist"
+        class="wishlist container"
       >
-        <div *ngFor="let game of wishlist">
-          <div>
+        <div
+          *ngFor="let game of wishlist"
+          class="row flex-wrap wishlist-item mb-2"
+        >
+          <div id="game-img" class="col-5 col-md-4 px-0">
             <img src="{{ game.image }}" alt="{{ game.name }}" />
           </div>
-          <div>
+          <div id="title-div" class="col-4 col-md-3 text-truncate">
             <h5>{{ game.name }}</h5>
           </div>
-          <button type="button" class="btn" (click)="removeFromWishlist(game)">
-            Remove from wishlist
-          </button>
-          <button
-            type="button"
-            class="btn"
-            [routerLink]="['/details', game.id]"
+          <div
+            id="button-div"
+            class="col-8 col-sm-4 col-md-3 mt-2 mt-md-0 px-0 pb-1 offset-md-2"
           >
-            Details
-          </button>
+            <button
+              type="button"
+              class="btn btn-danger me-2"
+              (click)="removeFromWishlist(game)"
+            >
+              Remove
+            </button>
+            <button
+              type="button"
+              class="btn details"
+              [routerLink]="['/details', game.id]"
+            >
+              Details
+            </button>
+          </div>
         </div>
       </div>
     </div>

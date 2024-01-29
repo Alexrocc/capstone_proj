@@ -7,8 +7,42 @@
       "surname": "Rocchigiani",
       "username": "Ulaman",
       "terms": true,
-      "wishlist": [],
-      "library": [],
+      "wishlist": [
+        {
+          "name": "Baldur's Gate 3",
+          "release_date": "3 Aug, 2023",
+          "rating": 96,
+          "price": 59.99,
+          "genres": [
+            "Adventure",
+            "RPG",
+            "Strategy"
+          ],
+          "description": "Gather your party and return to the Forgotten Realms in a tale of fellowship and betrayal, sacrifice and survival, and the lure of absolute power. Mysterious abilities are awakening inside you, drawn from a mind flayer parasite planted in your brain. Resist, and turn darkness against itself. Or embrace corruption, and become ultimate evil. From the creators of Divinity: Original Sin 2 comes a next-generation RPG, set in the world of Dungeons & Dragons.",
+          "reviews": 475.998,
+          "image": "https://cdn.akamai.steamstatic.com/steam/apps/1086940/header.jpg?t=1703250718",
+          "video_src": "https://cdn.akamai.steamstatic.com/steam/apps/256987424/movie480_vp9.webm?t=1702007645",
+          "id": "1"
+        }
+      ],
+      "library": [
+        {
+          "name": "Baldur's Gate 3",
+          "release_date": "3 Aug, 2023",
+          "rating": 96,
+          "price": 59.99,
+          "genres": [
+            "Adventure",
+            "RPG",
+            "Strategy"
+          ],
+          "description": "Gather your party and return to the Forgotten Realms in a tale of fellowship and betrayal, sacrifice and survival, and the lure of absolute power. Mysterious abilities are awakening inside you, drawn from a mind flayer parasite planted in your brain. Resist, and turn darkness against itself. Or embrace corruption, and become ultimate evil. From the creators of Divinity: Original Sin 2 comes a next-generation RPG, set in the world of Dungeons & Dragons.",
+          "reviews": 475.998,
+          "image": "https://cdn.akamai.steamstatic.com/steam/apps/1086940/header.jpg?t=1703250718",
+          "video_src": "https://cdn.akamai.steamstatic.com/steam/apps/256987424/movie480_vp9.webm?t=1702007645",
+          "id": "1"
+        }
+      ],
       "id": 1
     }
   ]
