@@ -1,66 +1,70 @@
 <div class="container">
-  <div class="row">
-    <div class="col">
+  <div class="row justify-content-center">
+    <div class="col-8 col-md-7 col-lg-5">
+      <h2 class="my-5">REGISTER:</h2>
       <form [formGroup]="registerData" (ngSubmit)="register()">
         <div class="form-group">
-          <label for="name">Name:</label>
+          <label class="mt-2" for="name">Name:</label>
           <input
             type="text"
             id="name"
             name="name"
             formControlName="name"
-            class="form-control"
+            class="form-control mt-2"
           />
-          <label for="surname">Surname:</label>
+          <label class="mt-2" for="surname">Surname:</label>
           <input
             type="text"
             id="surname"
             name="surname"
             formControlName="surname"
-            class="form-control"
+            class="form-control mt-2"
           />
-          <label for="username">Username:</label>
+          <label class="mt-2" for="username">Username:</label>
           <input
             type="text"
             id="username"
             name="username"
             formControlName="username"
-            class="form-control"
+            class="form-control mt-2"
             placeholder="Type the name you want to be shown as"
           />
         </div>
         <div class="form-group">
-          <label for="email">Email:</label>
+          <label class="mt-2" for="email">Email:</label>
           <input
             type="email"
             name="email"
             id="email"
             formControlName="email"
-            class="form-control"
+            class="form-control mt-2"
           />
-          <label for="password">Password:</label>
+          <label class="mt-2" for="password">Password:</label>
           <input
             type="password"
             name="password"
             id="password"
             formControlName="password"
-            class="form-control"
+            class="form-control mt-2"
           />
-          <label for="confirmPassword">Confirm Password:</label>
+          <label class="mt-2" for="confirmPassword">Confirm Password:</label>
           <input
             type="password"
             name="confirmPassword"
             id="confirmPassword"
             formControlName="confirmPassword"
-            class="form-control"
+            class="form-control mt-2"
           />
-          <label for="terms">I agree to the terms and conditions.</label>
-          <input
-            type="checkbox"
-            name="terms"
-            id="terms"
-            formControlName="terms"
-          />
+          <label class="mt-2" for="terms" id="terms-label"
+            >I agree to the terms and conditions.
+            <input
+              type="checkbox"
+              name="terms"
+              id="terms"
+              formControlName="terms"
+            />
+            <span class="checkbox"></span>
+          </label>
         </div>
         <button
           type="submit"

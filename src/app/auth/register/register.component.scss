@@ -1,0 +1,32 @@
+label, h2{
+    color : #ffffff;
+}
+
+input{
+    margin-right: 20px;
+    padding: 7px 10px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: rgba(0,0,0,0.1);
+    border: 1px solid #000;
+    color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 0 3px rgba(0,0,0,0.5) inset, 1px 1px 0 0 rgba(255,255,255,0.2);
+}
+
+button{
+    background-color: #1a4170;
+    color : #649adb;
+    &:disabled{
+        color: #649adb;
+        background-color: #1a4170;
+        border: none;
+    }
+}
+
+#terms-label{
+    position: relative;
+}
+#terms{
+  opacity: 0;
+}
