@@ -1,7 +1,10 @@
 <div class="container">
   <div class="row" *ngIf="game$ | async as game">
-    <div class="video-area col-8">
-      <h1 class="mt-3">{{ game.name }}</h1>
+    <div class="img-container col-12 d-flex d-sm-none order-first mt-4">
+      <img src="{{ game.image }}" alt="{{ game.name }}" />
+    </div>
+    <h1 class="d-none d-lg-block mt-3 col-12">{{ game.name }}</h1>
+    <div class="video-area col-12 col-lg-6 order-1 order-lg-0">
       <div class="video-player">
         <video
           src="{{ game.video_src }}"
@@ -12,39 +15,47 @@
         ></video>
       </div>
     </div>
-    <div class="header-area col-4">
-      <div class="img-container">
+    <div class="header-area col-12 col-lg-4 order-0 order-lg-1">
+      <h2 class="d-none d-sm-block d-lg-none my-4">{{ game.name }}</h2>
+      <div
+        class="img-container d-none d-sm-inline-block md-bp-header mb-md-5 mb-lg-0 me-3"
+      >
         <img src="{{ game.image }}" alt="{{ game.name }}" />
       </div>
-      <div class="score">
-        <h4>{{ game.release_date }}</h4>
+      <div class="score mb-4 d-md-inline-block">
+        <h2 class="d-sm-none">{{ game.name }}</h2>
+        <h4 class="mt-3">{{ game.release_date }}</h4>
         <div>
           <p *ngIf="game.rating >= 95" class="positive-rev">
-            Overwhelmingly Positive <span>({{ game.reviews }})</span>
+            Overwhelmingly Positive
+            <span>({{ game.reviews }} / {{ game.rating }}%)</span>
           </p>
           <p
             *ngIf="game.rating >= 80 && game.rating <= 94"
             class="positive-rev"
           >
-            Very Positive <span>({{ game.reviews }})</span>
+            Very Positive <span>({{ game.reviews }} / {{ game.rating }}%)</span>
           </p>
           <p
             *ngIf="game.rating >= 70 && game.rating <= 79"
             class="positive-rev"
           >
-            Mostly Positive <span>({{ game.reviews }})</span>
+            Mostly Positive
+            <span>({{ game.reviews }} / {{ game.rating }}%)</span>
           </p>
           <p *ngIf="game.rating >= 40 && game.rating <= 69" class="mixed-rev">
-            Mixed <span>({{ game.reviews }})</span>
+            Mixed <span>({{ game.reviews }} / {{ game.rating }}%)</span>
           </p>
           <p
             *ngIf="game.rating >= 20 && game.rating <= 39"
             class="negative-rev"
           >
-            Mostly Negative <span>({{ game.reviews }})</span>
+            Mostly Negative
+            <span>({{ game.reviews }} / {{ game.rating }}%)</span>
           </p>
           <p *ngIf="game.rating >= 0 && game.rating <= 19" class="negative-rev">
-            Overwhelmingly Negative <span>({{ game.reviews }})</span>
+            Overwhelmingly Negative
+            <span>({{ game.reviews }} / {{ game.rating }}%)</span>
           </p>
           <p *ngIf="!game.rating">This game does not have enough reviews yet</p>
         </div>
@@ -52,13 +63,13 @@
     </div>
 
     <div
-      class="shopping-area"
+      class="shopping-area py-3 my-4 order-5"
       *ngIf="currentUser$ | async as user; else noUser"
     >
       <div *ngIf="game.price !== null; else FTP">
         Buy {{ game.name }}
         <div>
-          <div>{{ game.price }}</div>
+          <div>{{ game.price }}€</div>
           <div *ngIf="isInLibrary$ | async as boolean; else notInLibrary">
             <button type="button" class="btn" disabled>In Library</button>
           </div>
@@ -74,7 +85,8 @@
         </div>
       </div>
     </div>
-    <div class="description-area">
+    <div class="description-area col-12 col-md-8 pb-5 order-last">
+      <h4>ABOUT THIS GAME:</h4>
       <h6>{{ game.description }}</h6>
     </div>
   </div>
@@ -107,7 +119,9 @@
 </ng-template>
 
 <ng-template #noUser>
-  <div *ngIf="game.price; else free">{{ game.price }}</div>
-  <h5>Please log in to purchase this product.</h5>
-  <ng-template #free>Free to play</ng-template>
+  <div class="shopping-area py-3 my-4 order-5">
+    <span class="mb-2" *ngIf="game.price; else free">{{ game.price }}€</span>
+    <h5>Please log in to purchase this product.</h5>
+    <ng-template #free><span class="mb-2">Free to play</span></ng-template>
+  </div>
 </ng-template>

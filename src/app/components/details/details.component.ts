@@ -11,7 +11,6 @@ import { SteamService } from 'src/app/services/steam.service';
   styleUrls: ['./details.component.scss'],
 })
 export class DetailsComponent implements OnInit, OnDestroy {
-  // gameRating$!: Observable<number>;
   game!: Steam;
   game$!: Observable<Steam>;
   isInWishlist$ = new BehaviorSubject<true | null>(null);
@@ -39,17 +38,16 @@ export class DetailsComponent implements OnInit, OnDestroy {
       if (!isNaN(gameId) && gameId <= 40) {
         this.steamSrv.getSingleGame(gameId).subscribe((res) => {
           this.game = res;
-          // this.gameRating$ = of(res.rating);
-          console.log(res.rating);
-
           this.game$ = of(res);
-          this.steamSrv.getUser(this.userId).subscribe((res) => {
-            this.currentUser$ = of(res);
-            this.userWishlist = res.wishlist;
-            this.userLibrary = res.library;
-            this.checkLibrary();
-            this.checkWishlist();
-          });
+          if (typeof this.userId === 'number') {
+            this.steamSrv.getUser(this.userId).subscribe((res) => {
+              this.currentUser$ = of(res);
+              this.userWishlist = res.wishlist;
+              this.userLibrary = res.library;
+              this.checkLibrary();
+              this.checkWishlist();
+            });
+          }
         });
       } else if (gameId > 40) {
         this.router.navigate(['notfound']);

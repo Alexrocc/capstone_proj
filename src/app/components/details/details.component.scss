@@ -12,15 +12,45 @@
     color: #A34C25;
 }
 
+.img-container{
+    img{
+        width: 100%;
+        object-fit: cover;
+    }
+}
 
-.video-area{
-    
-    .video-player{
-        height: 330px;
-        width: 600px;
-        video{
-            height: 330px;
-            width: 600px;
+.video-player{
+    width: 100%;
+    video{
+        width: 100%;
+    }
+}
+
+.score{
+    h4{
+        font-size: 15px;
+    }
+}
+
+.description-area{
+    h6, h4{
+        font-weight: 400;
+    }
+}
+
+@media screen and (min-width: 768px) {   
+    .score{
+        h4{
+            font-size: 19px;
         }
+        div{
+            font-size: 14px;
+        }
+    }
+
+    .md-bp-header{
+        display: inline-block;
+        max-width: 350px;
+        max-height: 200px;
     }
 }
