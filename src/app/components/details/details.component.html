@@ -59,29 +59,35 @@
           </p>
           <p *ngIf="!game.rating">This game does not have enough reviews yet</p>
         </div>
+        <div>
+          <span>Genres: </span>
+          <span *ngFor="let genre of game.genres"> {{ genre }} </span>
+        </div>
       </div>
     </div>
 
     <div
-      class="shopping-area py-3 my-4 order-5"
+      class="shopping-area position-relative col-12 col-lg-8 ms-2 py-3 my-4 order-5"
       *ngIf="currentUser$ | async as user; else noUser"
     >
-      <div *ngIf="game.price !== null; else FTP">
+      <div class="d-inline" *ngIf="game.price !== null; else FTP">
         Buy {{ game.name }}
-        <div>
-          <div>{{ game.price }}€</div>
-          <div *ngIf="isInLibrary$ | async as boolean; else notInLibrary">
-            <button type="button" class="btn" disabled>In Library</button>
-          </div>
-          <div *ngIf="isInWishlist$ | async as boolean; else notInWishlist">
-            <button
-              type="button"
-              class="btn"
-              (click)="removeFromWishlist(game)"
-            >
-              Remove from Wishlist
-            </button>
-          </div>
+      </div>
+      <div id="buttons" class="">
+        <span id="price" class="d-inline-block">{{ game.price }}€</span>
+        <div
+          class="d-inline-block"
+          *ngIf="isInLibrary$ | async as boolean; else notInLibrary"
+        >
+          <span type="button" class="" disabled>In Library</span>
+        </div>
+        <div
+          class="d-inline-block"
+          *ngIf="isInWishlist$ | async as boolean; else notInWishlist"
+        >
+          <span type="button" class="" (click)="removeFromWishlist(game)">
+            Remove from Wishlist
+          </span>
         </div>
       </div>
     </div>

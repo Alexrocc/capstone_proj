@@ -38,6 +38,38 @@
     }
 }
 
+.shopping-area{
+    background: linear-gradient( -60deg, rgba(226,244,255,0.3) 5%,rgba(84, 107, 115, 0.3) 95%);
+    font-size: 27px;
+    border-radius: 4px;
+    #price{
+        font-size: 14px;
+    }
+    #buttons{
+      position: absolute;
+      right: 0;
+        background-color: #000000;
+        div{
+            span{
+                border-radius: 2px;
+                border: none;
+                padding: 1px;
+                display: block;
+                cursor: pointer;
+                text-decoration: none !important;
+                color: #d2efa9;
+                padding: 0 15px;
+                font-size: 15px;
+                line-height: 30px;
+                background: transparent;
+                text-shadow: 1px 1px 0px rgba( 0, 0, 0, 0.3 );
+                background: linear-gradient( to right, #8ed629 5%, #6aa621 95%);;
+            }
+
+        }
+    }
+}
+
 @media screen and (min-width: 768px) {   
     .score{
         h4{
@@ -45,6 +77,9 @@
         }
         div{
             font-size: 14px;
+        }
+        p{
+            margin-bottom: 6px;
         }
     }
 
