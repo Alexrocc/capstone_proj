@@ -67,10 +67,10 @@
     </div>
 
     <div
-      class="shopping-area position-relative col-12 col-lg-8 ms-2 py-3 my-4 order-5"
+      class="shopping-area position-relative col-10 col-lg-8 ms-2 py-3 my-4 order-5"
       *ngIf="currentUser$ | async as user; else noUser"
     >
-      <div class="d-inline" *ngIf="game.price !== null; else FTP">
+      <div id="buy" *ngIf="game.price !== null; else FTP">
         Buy {{ game.name }}
       </div>
       <div id="buttons" class="">
@@ -79,13 +79,18 @@
           class="d-inline-block"
           *ngIf="isInLibrary$ | async as boolean; else notInLibrary"
         >
-          <span type="button" class="" disabled>In Library</span>
+          <span id="inLibrary" type="button" disabled>In Library</span>
         </div>
         <div
           class="d-inline-block"
           *ngIf="isInWishlist$ | async as boolean; else notInWishlist"
         >
-          <span type="button" class="" (click)="removeFromWishlist(game)">
+          <span
+            id="removeFromWishlist"
+            type="button"
+            class=""
+            (click)="removeFromWishlist(game)"
+          >
             Remove from Wishlist
           </span>
         </div>
@@ -99,9 +104,9 @@
 </div>
 
 <ng-template #FTP
-  ><div>
+  ><div id="buy">
     Play {{ game.name }}
-    <div>Free</div>
+    <span id="price" class="d-inline-block">Free</span>
     <div *ngIf="isInLibrary$">
       <button type="button" class="btn" disabled>In Library</button>
     </div>
@@ -109,23 +114,30 @@
 >
 
 <ng-template #notInWishlist>
-  <div>
-    <button type="button" class="btn" (click)="addToWishlist(game)">
+  <div class="d-inline-block">
+    <span
+      id="addToWishlist"
+      type="button"
+      class="btn"
+      (click)="addToWishlist(game)"
+    >
       Add to Wishlist
-    </button>
+    </span>
   </div>
 </ng-template>
 
 <ng-template #notInLibrary>
-  <div>
-    <button type="button" class="btn" (click)="addToLibrary(game)">
+  <div class="d-inline-block">
+    <span type="button" class="btn" (click)="addToLibrary(game)">
       Buy Game
-    </button>
+    </span>
   </div>
 </ng-template>
 
 <ng-template #noUser>
-  <div class="shopping-area py-3 my-4 order-5">
+  <div
+    class="shopping-area position-relative col-10 col-lg-8 ms-2 py-3 my-4 order-5"
+  >
     <span class="mb-2" *ngIf="game.price; else free">{{ game.price }}€</span>
     <h5>Please log in to purchase this product.</h5>
     <ng-template #free><span class="mb-2">Free to play</span></ng-template>

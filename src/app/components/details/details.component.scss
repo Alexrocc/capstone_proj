@@ -40,20 +40,25 @@
 
 .shopping-area{
     background: linear-gradient( -60deg, rgba(226,244,255,0.3) 5%,rgba(84, 107, 115, 0.3) 95%);
-    font-size: 27px;
+    
     border-radius: 4px;
+    #buy{
+        font-size: 17px;
+    }
     #price{
         font-size: 14px;
+        padding-inline: 5px;
     }
     #buttons{
       position: absolute;
-      right: 0;
+      right: -15px;
         background-color: #000000;
+        padding: 2px 0 2px 2px;
         div{
             span{
+                margin-inline: 2px;
                 border-radius: 2px;
                 border: none;
-                padding: 1px;
                 display: block;
                 cursor: pointer;
                 text-decoration: none !important;
@@ -61,14 +66,23 @@
                 padding: 0 15px;
                 font-size: 15px;
                 line-height: 30px;
-                background: transparent;
+             
                 text-shadow: 1px 1px 0px rgba( 0, 0, 0, 0.3 );
-                background: linear-gradient( to right, #8ed629 5%, #6aa621 95%);;
+                background: linear-gradient( to right, #8ed629 5%, #6aa621 95%);
+            }
+            #addToWishlist, #removeFromWishlist{
+                background: linear-gradient( to right, #4aa8af 5%, #0d90cc 95%);
+                color: #c0e4f5;
+            }
+            #inLibrary{
+                background: linear-gradient( to right, #5d959975 5%, #5097b883 95%);
+                color: #e9f4f5e1;
+            }
             }
 
         }
     }
-}
+
 
 @media screen and (min-width: 768px) {   
     .score{
@@ -87,5 +101,13 @@
         display: inline-block;
         max-width: 350px;
         max-height: 200px;
+    }
+
+   .shopping-area #buttons{
+        right: 15px;
+    }
+
+   .shopping-area #buy{
+        font-size: 27px;
     }
 }
