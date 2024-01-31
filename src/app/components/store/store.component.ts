@@ -38,4 +38,11 @@ export class StoreComponent implements OnInit {
       });
     }
   }
+
+  checkLibrary(name: string): boolean {
+    return (
+      Array.isArray(this.userLibrary) &&
+      this.userLibrary.some((e) => e.name === name)
+    );
+  }
 }

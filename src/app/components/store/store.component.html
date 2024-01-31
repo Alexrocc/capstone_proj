@@ -17,7 +17,11 @@
               src="{{ game.image }}"
               alt="{{ game.name }}"
               loading="lazy"
+              [ngClass]="{ 'owned-img-opacity': checkLibrary(game.name) }"
             />
+            <div class="owned" *ngIf="checkLibrary(game.name)">
+              IN LIBRARY&nbsp;&nbsp;
+            </div>
           </div>
           <div
             class="tab-content align-self-center flex-grow-1 text-truncate col-4"

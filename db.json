@@ -41,6 +41,20 @@
           "image": "https://cdn.akamai.steamstatic.com/steam/apps/1086940/header.jpg?t=1703250718",
           "video_src": "https://cdn.akamai.steamstatic.com/steam/apps/256987424/movie480_vp9.webm?t=1702007645",
           "id": "1"
+        },
+        {
+          "name": "Monster Hunter: World",
+          "release_date": "8 Aug, 2018",
+          "rating": 88,
+          "price": 29.99,
+          "genres": [
+            "Action"
+          ],
+          "description": "Welcome to a new world! Take on the role of a hunter and slay ferocious monsters in a living, breathing ecosystem where you can use the landscape and its diverse inhabitants to get the upper hand. Hunt alone or in co-op with up to three other players, and use materials collected from fallen foes to craft new gear and take on even bigger, badder beasts!",
+          "reviews": 247.106,
+          "image": "https://cdn.akamai.steamstatic.com/steam/apps/582010/header.jpg?t=1704795600",
+          "video_src": "https://cdn.akamai.steamstatic.com/steam/apps/256747424/movie480.webm?t=1578591369",
+          "id": "6"
         }
       ],
       "id": 1
