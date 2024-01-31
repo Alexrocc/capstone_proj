@@ -18,6 +18,14 @@
 
 .wishlist-item{
     background-color: #16202D;
+    transition: 0.3s;
+    box-shadow: 4px 2px 4px 0px rgba(0, 0, 0, 0.164);
+    cursor: pointer;
+    &:hover{
+        background-color: #3b5374;
+        transform: scale(101%);
+        transition: 0.3s;
+    }
 }
 
 #game-img{

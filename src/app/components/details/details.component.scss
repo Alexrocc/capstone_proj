@@ -69,6 +69,11 @@
              
                 text-shadow: 1px 1px 0px rgba( 0, 0, 0, 0.3 );
                 background: linear-gradient( to right, #8ed629 5%, #6aa621 95%);
+                transition: 0.2s;
+                &:hover{
+                    opacity: 80%;
+                    transition: 0.2s;
+                }
             }
             #addToWishlist, #removeFromWishlist{
                 background: linear-gradient( to right, #4aa8af 5%, #0d90cc 95%);
@@ -77,6 +82,10 @@
             #inLibrary{
                 background: linear-gradient( to right, #5d959975 5%, #5097b883 95%);
                 color: #e9f4f5e1;
+                cursor: default;
+                &:hover{
+                    opacity: unset;
+                }
             }
             }
 

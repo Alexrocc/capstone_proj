@@ -21,6 +21,14 @@ h1,h2{
 
 
 .game-tab {
+    transition: 0.3s;
+    box-shadow: 4px 2px 4px 0px rgba(0, 0, 0, 0.164);
+    cursor: pointer;
+    &:hover{
+        background-color: #3b537470;
+        transform: scale(100.5%);
+        transition: 0.3s;
+    }
     font-weight: 400;
     font-size: 15px;
     display: block;
