@@ -21,12 +21,13 @@
 }
 
 #game-img{
+    width: 100px;
+    height: 60px;
     flex-shrink: 0;
-    padding-top: 5px;
     img{
         width: 100%;
-        object-fit: cover;
-        flex-shrink: 0;
+        height: 100%;
+        object-fit: contain;
     }
 }
 #title-div{
@@ -66,6 +67,7 @@
 
 @media screen and (min-width: 768px) {
    #game-img{
+    width: 140px;
     padding: 0;
    }
 }

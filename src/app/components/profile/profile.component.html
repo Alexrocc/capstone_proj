@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container text-center text-md-start">
   <div class="row justify-content-center">
     <div
       class="col-12 col-md-11 col-lg-8 pt-5"
@@ -23,34 +23,27 @@
         *ngIf="currentUserWishlist$ | async as wishlist; else noFavourites"
         class="wishlist container"
       >
-        <div
-          *ngFor="let game of wishlist"
-          class="row flex-wrap wishlist-item mb-2"
-        >
-          <div id="game-img" class="col-5 col-md-4 px-0">
-            <img src="{{ game.image }}" alt="{{ game.name }}" />
-          </div>
-          <div id="title-div" class="col-4 col-md-3 text-truncate">
-            <h5>{{ game.name }}</h5>
-          </div>
+        <div class="row justify-content-center justify-content-md-start">
           <div
-            id="button-div"
-            class="col-8 col-sm-4 col-md-3 mt-2 mt-md-0 px-0 pb-1 offset-md-2"
+            *ngFor="let game of wishlist"
+            class="col-12 col-sm-11 col-md-10 d-flex wishlist-item mb-2 px-1 py-2"
+            [routerLink]="['/details', game.id]"
           >
-            <button
-              type="button"
-              class="btn btn-danger me-2"
-              (click)="removeFromWishlist(game)"
-            >
-              Remove
-            </button>
-            <button
-              type="button"
-              class="btn details"
-              [routerLink]="['/details', game.id]"
-            >
-              Details
-            </button>
+            <div id="game-img" class="me-2">
+              <img src="{{ game.image }}" alt="{{ game.name }}" />
+            </div>
+            <div id="title-div" class="text-truncate">
+              <h5>{{ game.name }}</h5>
+            </div>
+            <div id="button-div" class="ms-auto">
+              <button
+                type="button"
+                class="btn btn-danger me-2"
+                (click)="removeFromWishlist(game)"
+              >
+                Remove
+              </button>
+            </div>
           </div>
         </div>
       </div>
