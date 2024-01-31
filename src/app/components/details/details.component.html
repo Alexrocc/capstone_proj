@@ -73,8 +73,13 @@
       <div id="buy" *ngIf="game.price !== null; else FTP">
         Buy {{ game.name }}
       </div>
-      <div id="buttons" class="">
-        <span id="price" class="d-inline-block">{{ game.price }}€</span>
+      <div id="buttons">
+        <span
+          id="price"
+          class="d-inline-block"
+          *ngIf="game.price !== null; else noPrice"
+          >{{ game.price }}€</span
+        >
         <div
           class="d-inline-block"
           *ngIf="isInLibrary$ | async as boolean; else notInLibrary"
@@ -88,7 +93,6 @@
           <span
             id="removeFromWishlist"
             type="button"
-            class=""
             (click)="removeFromWishlist(game)"
           >
             Remove from Wishlist
@@ -104,13 +108,11 @@
 </div>
 
 <ng-template #FTP
-  ><div id="buy">
-    Play {{ game.name }}
-    <span id="price" class="d-inline-block">Free</span>
-    <div *ngIf="isInLibrary$">
-      <button type="button" class="btn" disabled>In Library</button>
-    </div>
-  </div></ng-template
+  ><div id="buy">Play {{ game.name }}</div></ng-template
+>
+
+<ng-template #noPrice
+  ><span id="price" class="d-inline-block">Free</span></ng-template
 >
 
 <ng-template #notInWishlist>
@@ -129,7 +131,7 @@
 <ng-template #notInLibrary>
   <div class="d-inline-block">
     <span type="button" class="btn" (click)="addToLibrary(game)">
-      Buy Game
+      Add to Library
     </span>
   </div>
 </ng-template>
