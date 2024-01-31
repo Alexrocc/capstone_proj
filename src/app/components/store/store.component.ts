@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Steam } from 'src/app/interfaces/steam';
 import { SteamService } from 'src/app/services/steam.service';
-import { Observable, from } from 'rxjs';
+import { BehaviorSubject, Observable, from, map } from 'rxjs';
 
 @Component({
   selector: 'app-store',
@@ -11,7 +11,6 @@ import { Observable, from } from 'rxjs';
 export class StoreComponent implements OnInit {
   store$!: Observable<Steam[] | null>;
   userId!: number;
-  userWishlist!: Steam[];
   userLibrary!: Steam[];
   resError: boolean = false;
 
@@ -24,12 +23,6 @@ export class StoreComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (typeof this.userId === 'number') {
-      this.steamSrv.getUser(this.userId).subscribe((res) => {
-        this.userWishlist = res.wishlist;
-        this.userLibrary = res.library;
-      });
-    }
     this.steamSrv.getStore().subscribe((res) => {
       if (res) {
         this.store$ = from([res]);
@@ -39,5 +32,10 @@ export class StoreComponent implements OnInit {
         throw new Error();
       }
     });
+    if (typeof this.userId === 'number') {
+      this.steamSrv.getUser(this.userId).subscribe((res) => {
+        this.userLibrary = res.library;
+      });
+    }
   }
 }

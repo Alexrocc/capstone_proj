@@ -1,4 +1,3 @@
-
 p{
     margin: 0;
 }
@@ -9,7 +8,6 @@ h1,h2{
     text-align: start;
 }
 
-
 #store-top{
     background-image: url(https://store.akamai.steamstatic.com/public/images//v6/search/cluster_bg.png);
     background-position: center;
@@ -19,8 +17,8 @@ h1,h2{
     padding-top: 29px;
 }
 
-
 .game-tab {
+    position: relative;
     transition: 0.3s;
     box-shadow: 4px 2px 4px 0px rgba(0, 0, 0, 0.164);
     cursor: pointer;
@@ -47,11 +45,11 @@ h1,h2{
         height: 100%;
         width: 120px;
         flex-shrink: 0;
-        img{
+        .game-img{
             width: 100%;
             height: 100%;
             object-fit: contain;
-        }
+        }       
     }
 }
 
@@ -80,8 +78,7 @@ h1,h2{
         font-size: 18px;
         .tab-img{
             width: 160px;
-        }
-        
+        }       
     }
 }
 

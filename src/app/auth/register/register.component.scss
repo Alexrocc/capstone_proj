@@ -23,10 +23,51 @@ button{
         border: none;
     }
 }
-
-#terms-label{
+// custom checkbox
+.terms-label{
+    display: block;
     position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    user-select: none;
 }
-#terms{
-  opacity: 0;
+.terms-label input{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
 }
+.checkmark{
+    position: absolute;
+    top: 4px;
+    left: 2px;
+    height: 15px;
+    width: 15px;
+    background-color: #a7a7a7;
+}
+.terms-label input:checked ~ .checkmark {
+    background-color: #216094;
+}
+.checkmark::after{
+    content: "";
+    position: absolute;
+    display: none;
+}
+.terms-label input:checked ~ .checkmark::after{
+    display: block;
+ }
+
+.terms-label .checkmark::after{
+    left: 5px;
+    top: 0px;
+    width: 6px;
+    height: 12px;
+    border: solid rgb(255 255 255);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+ 

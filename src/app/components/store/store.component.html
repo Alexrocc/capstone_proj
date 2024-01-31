@@ -12,7 +12,12 @@
           [routerLink]="['/details', game.id]"
         >
           <div class="tab-img col-2 p-0">
-            <img src="{{ game.image }}" alt="{{ game.name }}" loading="lazy" />
+            <img
+              class="game-img"
+              src="{{ game.image }}"
+              alt="{{ game.name }}"
+              loading="lazy"
+            />
           </div>
           <div
             class="tab-content align-self-center flex-grow-1 text-truncate col-4"
@@ -70,7 +75,11 @@
 </div>
 
 <ng-template #FTP
-  ><div class="tab-content align-self-end text-end p-2 col-2">
+  ><div class="tab-content align-self-end p-2 col-2">
     <p class="text-end">Free</p>
   </div></ng-template
 >
+
+<ng-template #not>
+  <span></span>
+</ng-template>
