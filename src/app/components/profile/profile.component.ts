@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { User } from 'src/app/auth/auth-data';
 import { Steam } from 'src/app/interfaces/steam';
@@ -9,7 +9,7 @@ import { SteamService } from 'src/app/services/steam.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   userId!: number;
   currentUser$!: Observable<User>;
   currentUserWishlist$ = new BehaviorSubject<Steam[] | null>(null);
@@ -43,5 +43,9 @@ export class ProfileComponent implements OnInit {
     this.currentUserWishlist$.next(this.wishlist);
     this.currentUserWishlist$.subscribe();
     this.steamSrv.patchUserWishlist(this.wishlist, this.userId).subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.currentUserWishlist$.unsubscribe();
   }
 }
